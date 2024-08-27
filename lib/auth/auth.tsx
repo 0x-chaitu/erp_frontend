@@ -1,10 +1,9 @@
 "use client"
 
 import { User } from 'firebase/auth';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { onIdTokenChanged } from '../firebase/firebaseAuth';
 import { SESSION_COOKIE_NAME } from '@/constants';
-import { log } from 'console';
 import { auth } from '../firebase/firebaseConfig';
 import nookies from "nookies";
 

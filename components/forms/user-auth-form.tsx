@@ -20,7 +20,7 @@ const formSchema = z.object({
 type UserFormValue = z.infer<typeof formSchema>;
 
 export default function UserAuthForm({ tenantId }: { tenantId: string }) {
-  const [loading, setLoading] = useState(false);
+  const [loading, _setLoading] = useState(false);
 
   const defaultValues = {
     email: ''
@@ -32,7 +32,7 @@ export default function UserAuthForm({ tenantId }: { tenantId: string }) {
 
   const onSubmit = async ({ email, password }: UserFormValue) => {
     try {
-      const userUid = await signInWithEmailAndPassword(tenantId, email, password)
+      await signInWithEmailAndPassword(tenantId, email, password)
       // if (userUid) {
       //   await createSession(userUid);
       // }

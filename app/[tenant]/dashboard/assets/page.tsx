@@ -1,8 +1,8 @@
 import PageContainer from "@/components/layout/page-container";
 import { AssetClient } from "@/components/tables/asset-table/client";
-import { getAssetCount, getAssets } from "./api/route";
 import { headers } from "next/headers";
 import { Suspense } from "react";
+import { getAssetCount, getAssets } from "./utils";
 
 
 
@@ -16,7 +16,7 @@ async function Assets({ page, per_page, tenantId }: {
     const assetCountData = getAssetCount(tenantId)
 
     const [assets, assetCount] = await Promise.all([assetsData, assetCountData])
-    return <AssetClient data={assets} dataCount={assetCount} per_page={per_page || "10"} />;
+    return <AssetClient data={assets || []} dataCount={assetCount} per_page={per_page || "10"} />;
 }
 
 export default function Page({ params, searchParams }: {

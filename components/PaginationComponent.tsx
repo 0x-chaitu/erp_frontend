@@ -6,7 +6,6 @@ import {
     PaginationLink,
 } from "@/components/ui/pagination";
 import { Button } from "./ui/button";
-import { useRouter, useSearchParams } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Table } from "@tanstack/react-table";
 
@@ -83,7 +82,7 @@ export function PaginationComponent<TData>({
                     onClick={() => table.nextPage()}
                     className="group"
                 >
-                    Next{" "}
+                    Next
                     <ChevronRight className="group-hover:translate-x-1 transition-all duration-300 delay-150" />
                 </Button>
             </PaginationContent>

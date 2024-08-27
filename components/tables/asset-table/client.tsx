@@ -1,6 +1,6 @@
 'use client';
+import React from 'react';
 import { DataTable } from '@/components/ui/data-table';
-import { useRouter } from 'next/navigation';
 import { columns } from './columns';
 import { Asset } from '@/constants/asset';
 

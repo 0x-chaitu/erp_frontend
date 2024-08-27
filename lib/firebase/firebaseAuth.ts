@@ -1,7 +1,6 @@
 import {
     type User,
     onAuthStateChanged as _onAuthStateChanged,
-    Auth,
 } from 'firebase/auth';
 
 import { auth } from './firebaseConfig';

@@ -1,6 +1,4 @@
-import 'server-only'
 import { connectToDatabase } from "@/lib/db";
-import { delay } from '@/lib/utils';
 
 export const getAssets = (async (id: string, per_page?: string, page?: string) => {
 
