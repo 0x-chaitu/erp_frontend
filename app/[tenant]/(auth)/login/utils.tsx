@@ -3,6 +3,10 @@ import { connectToDatabase } from "@/lib/db";
 export const getTenant = (async (id: string) => {
 
     const { pool } = connectToDatabase();
+
+    if (!pool) {
+        return []
+    }
     try {
         // const client = await pool.connect();
         const query = {
