@@ -1,0 +1,18 @@
+{
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  // "workbench.colorTheme": "Visual Studio Dark",
+  "editor.formatOnSave": true,
+  "rust-analyzer.workspace.discoverConfig": null,
+  "typescript.suggest.autoImports": true, // or
+  "javascript.suggest.autoImports": true,
+  // "typescript.preferences.includePackageJsonAutoImports": "on",
+  // "security.workspace.trust.enabled": false,
+  // "javascript.preferences.importModuleSpecifier": "non-relative",
+  // "typescript.preferences.importModuleSpecifier": "non-relative",
+  // "editor.multiCursorModifier": "alt",
+}

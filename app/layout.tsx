@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "@/lib/auth/auth";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +19,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={`${inter.className} overflow-hidden `}
+        suppressHydrationWarning={true}
+      // className={cn(
+      //   "min-h-screen bg-background font-sans antialiased",
+      //   inter.variable
+      // )}
+      ><AuthProvider>
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   );
 }
