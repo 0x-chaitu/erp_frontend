@@ -1,4 +1,4 @@
-import { BusFrontIcon, LayoutDashboardIcon, LogIn, User, User2Icon } from 'lucide-react';
+import { BusFrontIcon, LayoutDashboardIcon, LogIn, LogOut, User, User2Icon } from 'lucide-react';
 
 export type User = {
     id: number;
@@ -61,9 +61,9 @@ export const navItems: any[] = [
     //     label: 'kanban'
     //   },
     {
-        title: 'Login',
-        href: '/',
-        icon: LogIn,
-        label: 'login'
+        title: 'Logout',
+        // href: '/',
+        icon: LogOut,
+        label: 'logout'
     }
 ];

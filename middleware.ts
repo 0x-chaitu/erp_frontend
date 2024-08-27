@@ -17,7 +17,7 @@ export async function middleware(request: NextRequest) {
     subdomain = hostname.split(".")[0];
   }
 
-  if (!cookie && url.pathname != "/login") {
+  if (!cookie) {
     url.pathname = "/login"
     return NextResponse.rewrite(
       new URL(`/${subdomain}${url.pathname}`, request.url)
@@ -25,10 +25,20 @@ export async function middleware(request: NextRequest) {
   }
 
   try {
+
+
     const user = await verifyIdToken(cookie?.value || "")
-    const res = NextResponse.rewrite(
+    let res = NextResponse.rewrite(
       new URL(`/${subdomain}${url.pathname + url.search}`, request.url)
     )
+
+    if (url.pathname === "/" || url.pathname === "/login") {
+
+      res = NextResponse.redirect(
+        new URL(`/dashboard`, request.url)
+      )
+
+    }
 
     res.headers.set('X-Tenant', user.firebase.tenant || "")
     return res;

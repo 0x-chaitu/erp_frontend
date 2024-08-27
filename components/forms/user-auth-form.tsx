@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from "@/components/ui/button";
 import { PasswordInput } from "../ui/password-input";
 import { signInWithEmailAndPassword } from "@/lib/firebase/firebaseAuth";
+import { useRouter } from "next/navigation";
 
 
 const formSchema = z.object({
@@ -21,6 +22,7 @@ type UserFormValue = z.infer<typeof formSchema>;
 
 export default function UserAuthForm({ tenantId }: { tenantId: string }) {
   const [loading, _setLoading] = useState(false);
+  const router = useRouter()
 
   const defaultValues = {
     email: ''
@@ -31,11 +33,10 @@ export default function UserAuthForm({ tenantId }: { tenantId: string }) {
   });
 
   const onSubmit = async ({ email, password }: UserFormValue) => {
+
     try {
       await signInWithEmailAndPassword(tenantId, email, password)
-      // if (userUid) {
-      //   await createSession(userUid);
-      // }
+      router.push("/dashboard")
     } catch (error) {
       console.log('Unexpected error: ', error);
     }
