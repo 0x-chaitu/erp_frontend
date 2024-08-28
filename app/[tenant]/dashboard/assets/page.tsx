@@ -3,8 +3,10 @@
 import PageContainer from "@/components/layout/page-container";
 import { AssetClient } from "@/components/tables/asset-table/client";
 import { Suspense, useContext, useEffect, useState } from "react";
-import { getAssetCount, getAssets } from "./utils";
 import { AuthContext } from "@/lib/auth/auth";
+import nookies from 'nookies';
+import { SESSION_COOKIE_NAME } from "@/constants";
+import axios from 'axios';
 
 
 
@@ -30,18 +32,34 @@ export default function AssetsPage({ params, searchParams }: {
     const [assets, setAssets] = useState([])
     const [count, setCount] = useState(0)
 
+
+
     useEffect(() => {
         if (user?.tenantId != null) {
             console.log(322);
 
-            const assetsData = getAssets(user?.tenantId, searchParams?.per_page, searchParams?.page)
-            const assetCountData = getAssetCount(user?.tenantId)
+            const assetsData = axios.get(
+                `https://api.pudgelabs.in.net/v1/assets?offset=${(Number(searchParams?.page) - 1) * Number(searchParams?.per_page)}&limit=${searchParams?.per_page}`, {
+                headers: {
+                    'Authorization': nookies.get(null, SESSION_COOKIE_NAME)?.user_session
+                }
+            }
+            )
+            const assetCountData = axios.get(
+                `https://api.pudgelabs.in.net/v1/assets/count`, {
+                headers: {
+                    'Authorization': nookies.get(null, SESSION_COOKIE_NAME)?.user_session
+                }
+            }
+            )
 
             Promise.all([assetsData, assetCountData]).then((res) => {
 
-                setAssets(res?.[0] || [])
+                // setAssets(res?.[0]. || [])
+                setAssets(res?.[0]?.data?.data);
 
-                setCount(res[1])
+
+                setCount(res?.[1]?.data?.data)
             })
         }
     }, [user, searchParams])
