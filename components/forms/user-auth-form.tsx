@@ -74,7 +74,6 @@ export default function UserAuthForm({ tenantId }: { tenantId: string }) {
               <FormLabel>Password</FormLabel>
               <FormControl>
                 <PasswordInput
-                  type="password"
                   placeholder="Enter your password..."
                   disabled={loading}
                   {...field}

@@ -6,8 +6,8 @@ import { Asset } from '@/constants/asset';
 
 interface AssetClientProps {
     data: Asset[];
-    dataCount: string;
-    per_page: string
+    dataCount: number;
+    per_page: number
 }
 
 export const AssetClient: React.FC<AssetClientProps> = ({ data, dataCount, per_page }) => {

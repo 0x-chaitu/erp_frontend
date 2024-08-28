@@ -6,7 +6,7 @@ import { Input, type InputProps } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
 const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(({ className, ...props }, ref) => {
     const [showPassword, setShowPassword] = React.useState(false)
-    const disabled = props.value === '' || props.value === undefined || props.disabled
+    const disabled = props.disabled
     return (
         <div className="relative">
             <Input
@@ -23,7 +23,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(({ classNam
                 onClick={() => setShowPassword((prev) => !prev)}
                 disabled={disabled}
             >
-                {showPassword && !disabled ? (
+                {showPassword ? (
                     <EyeIcon className="h-4 w-4" aria-hidden="true" />
                 ) : (
                     <EyeOffIcon className="h-4 w-4" aria-hidden="true" />

@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from ".
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useCallback, useEffect, useMemo, useState } from "react"
-import { PaginationComponent } from "@/components/PaginationComponent"
+import { PaginationComponent } from "@/components/paginationComponent"
 
 
 
@@ -101,7 +101,7 @@ export function DataTable<TData, TValue>({
 
     return (
         <div>
-            <ScrollArea className="h-[calc(80vh-220px)] rounded-md border md:h-[calc(80dvh-200px)]">
+            <ScrollArea className="h-[calc(100vh-220px)] rounded-md border md:h-[calc(100dvh-200px)]">
                 <Table className="relative">
                     <TableHeader className="sticky top-0 bg-secondary">
                         {table.getHeaderGroups().map((headerGroup) => (
