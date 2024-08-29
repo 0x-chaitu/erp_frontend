@@ -13,7 +13,7 @@ interface AssetClientProps {
 export const AssetClient: React.FC<AssetClientProps> = ({ data, dataCount, per_page }) => {
     return (
         <>
-            <DataTable columns={columns} data={data} pageCount={Number(dataCount) / Number(per_page)} />
+            <DataTable columns={columns} data={data} pageCount={(dataCount) / (per_page)} />
         </>
     );
 };

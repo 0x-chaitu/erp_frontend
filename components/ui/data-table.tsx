@@ -6,6 +6,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { PaginationComponent } from "@/components/paginationComponent"
+import { useQueryStore } from "@/hooks/useQueryStore"
 
 
 
@@ -47,6 +48,7 @@ export function DataTable<TData, TValue>({
         [searchParams]
     )
 
+    const { setQuery } = useQueryStore()
 
 
     const [{ pageIndex, pageSize }, setPagination] =
@@ -72,14 +74,21 @@ export function DataTable<TData, TValue>({
 
     useEffect(() => {
 
+        setQuery({ page: pageIndex + 1, pageSize })
 
+        const newUrl = `${pathname}?${createQueryString({
+            page: pageIndex + 1,
+            per_page: pageSize,
+        })}`
 
-        router.push(
-            `${pathname}?${createQueryString({
-                page: pageIndex + 1,
-                per_page: pageSize,
-            })}`,
-        )
+        // router.push(
+        //     `${pathname}?${createQueryString({
+        //         page: pageIndex + 1,
+        //         per_page: pageSize,
+        //     })}`,
+        // )
+
+        window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl)
 
     }, [pageIndex, pageSize])
 
